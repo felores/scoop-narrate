@@ -7,14 +7,16 @@
   "url": "https://github.com/felores/narrate/archive/refs/tags/v0.3.6.tar.gz",
   "hash": "a47e7535e5f41f9d5219af15669cc64a589499ab8acd69e5e16ed60486586170",
   "extract_dir": "narrate-0.3.6",
-  "post_install": [
-    "Push-Location \"$dir\"; bun install --frozen-lockfile; Pop-Location",
+  "pre_install": [
     "Set-Content -Encoding Ascii -Path \"$dir\\narrate.cmd\" -Value '@bun run \"%~dp0src\\cli.ts\" %*'",
     "Set-Content -Encoding Ascii -Path \"$dir\\narrate-server.cmd\" -Value '@bun run \"%~dp0src\\server.ts\" %*'"
   ],
   "bin": [
     "narrate.cmd",
     "narrate-server.cmd"
+  ],
+  "post_install": [
+    "Push-Location \"$dir\"; bun install --frozen-lockfile; Pop-Location"
   ],
   "notes": [
     "narrate is installed. Start the server with:  narrate-server",
